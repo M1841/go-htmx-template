@@ -1,0 +1,81 @@
+{{ block "index" . }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Include CDNs for development -->
+    {{ if eq .Env "dev" }}
+        <!-- Tailwind CSS CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <!-- Google Fonts CDN -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <!-- Inter Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    {{ else }}
+        <!-- Tailwind CSS Dynamically Generated File -->
+        <link rel="stylesheet" href="/styles/index.css" />
+    {{ end }}
+
+    <!-- HTMX Source -->
+    <script src="/scripts/htmx.min.js"></script>
+
+    <title>Echo + HTMX</title>
+</head>
+<body class="bg-gradient-to-tl from-zinc-900 to-zinc-950/90 text-zinc-50/90 flex flex-col justify-center items-center gap-16 h-screen w-screen" style="font-family: Inter, sans-serif">
+
+    <header class="flex flex-col justify-center items-center gap-2">
+        <a href="https://echo.labstack.com/" target="_blank">
+            <img src="/public/svg/echo-icon.svg" alt="Echo" class="w-72 pl-2"/>
+        </a>
+
+        <span class="text-5xl font-medium pb-4">+</span>
+
+        <a href="https://htmx.org/" target="_blank">
+            <img src="/public/svg/htmx-icon.svg" alt="HTMX" class="w-72"/>
+        </a>
+    </header>
+
+    <section class="flex flex-col justify-center items-center text-sm gap-1">
+        <p>
+            Edit <code>web/views/index.gohtml</code> to see changes
+        </p>
+        <p class="text-zinc-300/50">
+            Click on the Echo and HTMX logos to learn more
+        </p>
+    </section>
+
+    {{ template "buttons" . }}
+
+</body>
+</html>
+{{ end }}
+
+{{ block "buttons" . }}
+    <div id="buttons" class="relative text-sm">
+        <button
+                {{/* Send POST request to /count */}}
+                hx-post="/count"
+                {{/* Use the response to change #buttons's innerHTML */}}
+                hx-target="#buttons"
+                class="bg-zinc-700/90 py-3 px-4 rounded-md hover:bg-zinc-700/50 active:bg-zinc-700/30 transition-colors min-w-28"
+        >
+            Counter: <span id="count">{{ .Count }}</span>
+        </button>
+
+        {{ if eq .ResetVisible true }}
+            <button
+                    {{/* Send DELETE request to /count */}}
+                    hx-delete="/count"
+                    {{/* Use the response to change #buttons's innerHTML */}}
+                    hx-target="#buttons"
+                    class="transition-all text-zinc-300/50 hover:text-zinc-50/90 absolute -bottom-8 left-10"
+            >
+                Reset
+            </button>
+        {{ end }}
+    </div>
+{{ end }}
