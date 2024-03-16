@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"go-htmx-practice/pkg/utils"
+	"go-htmx-template/pkg/utils"
 	"os"
 )
 

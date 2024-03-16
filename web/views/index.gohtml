@@ -17,7 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     {{ else }}
         <!-- Tailwind CSS Dynamically Generated File -->
-        <link rel="stylesheet" href="/styles/index.css" />
+        <link rel="stylesheet" href="/styles/tailwind_output.css" />
     {{ end }}
 
     <!-- HTMX Source -->
@@ -61,7 +61,7 @@
                 hx-post="/count"
                 {{/* Use the response to change #buttons's innerHTML */}}
                 hx-target="#buttons"
-                class="bg-zinc-700/90 py-3 px-4 rounded-md hover:bg-zinc-700/50 active:bg-zinc-700/30 transition-colors min-w-28"
+                class="bg-zinc-700/90 py-3 px-4 rounded-md hover:bg-zinc-700/50 active:bg-zinc-700/30 transition-colors duration-[50ms] min-w-28"
         >
             Counter: <span id="count">{{ .Count }}</span>
         </button>
@@ -72,7 +72,7 @@
                     hx-delete="/count"
                     {{/* Use the response to change #buttons's innerHTML */}}
                     hx-target="#buttons"
-                    class="transition-all text-zinc-300/50 hover:text-zinc-50/90 absolute -bottom-8 left-10"
+                    class="text-zinc-300/50 hover:text-zinc-50/90 absolute -bottom-8 left-10 duration-[50ms]"
             >
                 Reset
             </button>
