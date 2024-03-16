@@ -2,3 +2,4 @@
 /target
 /tmp
 /web/node_modules
+/web/styles/tailwind_output.css
