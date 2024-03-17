@@ -25,30 +25,29 @@
 
     <title>Echo + HTMX</title>
 </head>
-<body class="bg-gradient-to-tl from-zinc-900 to-zinc-950/90 text-zinc-50/90 flex flex-col justify-center items-center gap-16 h-screen w-screen" style="font-family: Inter, sans-serif">
+<body class="bg-gradient-to-tl from-zinc-900 to-zinc-950/90 text-zinc-50/90 flex flex-col justify-center items-center h-screen w-screen" style="font-family: Inter, sans-serif">
 
-    <header class="flex flex-col justify-center items-center gap-2">
+    <header class="flex flex-row justify-center items-center gap-8 mb-12">
         <a href="https://echo.labstack.com/" target="_blank">
-            <img src="/public/svg/echo-icon.svg" alt="Echo" class="w-72 pl-2"/>
+            <img src="/public/svg/echo-icon.svg" alt="Echo" class="w-36 pl-2 hover:opacity-70 transition-all"/>
         </a>
-
-        <span class="text-5xl font-medium pb-4">+</span>
-
-        <a href="https://htmx.org/" target="_blank">
-            <img src="/public/svg/htmx-icon.svg" alt="HTMX" class="w-72"/>
+        <a href="https://htmx.org/" target="_blank" class="text-8xl font-bold text-[#e2dfdb] hover:opacity-70 transition-all">
+            &lt;<span class="text-[#4d93da]">/</span>&gt;
         </a>
     </header>
 
-    <section class="flex flex-col justify-center items-center text-sm gap-1">
+    <h1 class="text-5xl font-semibold mb-12">Echo + HTMX</h1>
+
+    {{ template "buttons" . }}
+
+    <section class="flex flex-col justify-center items-center text-sm gap-1 mt-12">
         <p>
             Edit <code>web/views/index.gohtml</code> to see changes
         </p>
-        <p class="text-zinc-300/50">
+        <p class="text-zinc-300/50 mt-12">
             Click on the Echo and HTMX logos to learn more
         </p>
     </section>
-
-    {{ template "buttons" . }}
 
 </body>
 </html>
