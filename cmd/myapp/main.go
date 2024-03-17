@@ -52,5 +52,10 @@ func main() {
 		return c.Render(200, "buttons", app)
 	})
 
-	e.Logger.Fatal(e.Start(":8080"))
+	port, isSet := os.LookupEnv("PORT")
+	if !isSet {
+		port = "8080"
+	}
+
+	e.Logger.Fatal(e.Start(":" + port))
 }
