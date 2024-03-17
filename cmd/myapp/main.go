@@ -4,6 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	"go-htmx-template/pkg/utils"
+	"net/http"
 	"os"
 )
 
@@ -32,6 +33,10 @@ func main() {
 
 	app := newApp(os.Getenv("APP_ENV"))
 
+	e.GET("/health", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Service up and running")
+	})
+
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(200, "index", app)
 	})
@@ -42,14 +47,14 @@ func main() {
 		}
 		app.Count++
 
-		return c.Render(200, "buttons", app)
+		return c.Render(http.StatusOK, "buttons", app)
 	})
 
 	e.DELETE("/count", func(c echo.Context) error {
 		app.Count = 0
 		app.ResetVisible = false
 
-		return c.Render(200, "buttons", app)
+		return c.Render(http.StatusOK, "buttons", app)
 	})
 
 	port, isSet := os.LookupEnv("PORT")
